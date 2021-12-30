@@ -1,0 +1,111 @@
+<!--Detail: 
+	rpg dialog made with html, css and javascript in a single document simply to leave things in one place just for consultation.
+-->
+<!DOCTYPE hml>
+<hml>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			
+		}
+		body{
+			background-image: linear-gradient(45deg,black,aqua) ;
+		}
+		.dialog{
+			background: rgba(0, 0, 0, 0.5);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			width: 600px;
+			height: 200px;
+			border-radius: 5px;
+			border: 5px white;
+			border-style: solid;
+			box-shadow:.4em .4em .5em rgba(0, 0, 0, .5);
+
+		}
+
+		.img_dialog{
+			width: 160px;
+			height: 160px;
+			margin: 20px;
+			background-image: url(face_dialogue.png);	
+			background-size: 640px;
+			background-position:0px -1px ;
+			display: inline-block;
+
+		}
+		.dialog p{
+			display: inline-block;
+			width: 360px;
+			height: 160px;
+			margin: 20px;
+			float: right;
+			color: white;
+			text-shadow: 2px 2px black;
+			font-size: 25px;
+			font-family: Arial,Helvetica,sans-serif;
+		}
+		/*create arrow*/
+		#triangle{
+			display:inline-block;
+			width: 0px;
+			height:0px;
+			border: solid 15px white;
+			border-left:15px solid transparent;
+			border-right:15px solid transparent;
+			border-bottom: 15px solid transparent;
+			position: relative;
+			top: -25px;
+			right: -320px;
+			animation: aniArrow .4s forwards linear infinite alternate-reverse ;
+			box-shadow:0px -2px rgba(0, 0, 0, .5) ;
+		}
+
+		/*Animation*/
+		@keyframes aniArrow{
+			from{
+				transform: translateY(-7px);
+			}
+			to{
+				transform: translateY(0px);
+			}
+		}
+	</style>
+</head>
+<body onkeydown="keyEvent(event)">
+	<div class="dialog">
+		<div class="img_dialog"></div>
+		<p id="texto">Example dialog made with html,css and javascript.<br>
+			Press enter key to proceed.
+		</p>
+		<span id="triangle"></span>
+	</div>
+</body>	
+<script>
+	totalTxt=-1;
+	function keyEvent(event)
+	{
+		var key = event.key || event.which || event.keyCode; //for old and new browsers
+		var keyChar = 13;
+		var txt=["New text placed via code<br>All text must be formatted with hml tags","Text 2","text3","text4","text5"];
+		
+		
+		if(key==keyChar || key=="Enter")
+		{	
+			if(txt.length-1 != totalTxt)
+			{
+				totalTxt++;
+				document.querySelector('#texto').innerHTML = txt[totalTxt];
+			}
+			else
+				document.getElementById('triangle').style.display="none";			
+		}		
+	}
+</script>
+</hml>
